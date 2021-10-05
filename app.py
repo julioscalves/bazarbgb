@@ -21,8 +21,9 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 cors = CORS(app)
 
-env_path = os.path.exists(os.path.join(os.getcwd(), '.env'))
-if env_path:
+env_path = os.path.join(os.getcwd(), '.env')
+
+if os.path.exists(env_path):
     load_dotenv(env_path)
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
@@ -593,4 +594,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, host="0.0.0.0")

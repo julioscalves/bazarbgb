@@ -257,7 +257,7 @@ $(document).ready(function () {
     }
   });
 
-  $(document).on("keypress", ".bg-autocomplete", function () {
+  $(document).on("keypress change focus", ".bg-autocomplete", function () {
     var boardgame_input_text = $(this).val();
     var boardgame_input_element = $(this);
     var bglist;
@@ -309,7 +309,7 @@ $(document).ready(function () {
       })
     });
 
-  $(document).on("keypress", ".city", function () {
+  $(document).on("keypress change focus", ".city", function () {
     var city = $(this).val()
     $(".city").autocomplete({
       delay: 300,
