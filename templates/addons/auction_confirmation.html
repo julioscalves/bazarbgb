@@ -1,0 +1,21 @@
+<div class="modal fade" id="auctionConfirm" tabindex="-1" aria-labelledby="auctionConfirm" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="auctionConfirm">Seu leilão está pronto?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          O encerramento está correto? Conferiu os lances iniciais?
+          <br><br>
+          Somente os itens da aba Leilão serão enviados. Qualquer outro conteúdo na aba Anúncio será perdido!
+          <br><br>
+          Tem certeza que deseja enviar seu leilão? Não será possível editá-lo após o envio e você só poderia enviar outro após uma semana.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light btn-lg" data-bs-dismiss="modal">Cancelar</button>
+          {{ auction_form.auction_submit(class_="btn btn-success btn-lg") }}
+        </div>
+      </div>
+    </div>
+</div>  

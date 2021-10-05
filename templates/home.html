@@ -1,0 +1,41 @@
+{% extends 'template.html' %}
+{% import "macros/subforms.html" as macros %}
+
+{% block content %}
+<div class="card px-5 mt-5 mb-5">
+    {% include 'addons/header.html' %}
+    </div>
+        {# #}
+        {% if telegram_auth %}       
+        <div class="row mt-3">
+            <div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 col-12 mx-auto">
+                <div class="mb-3">
+                    <nav>
+                        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                          <button class="nav-link active" id="nav-item-tab" data-bs-toggle="tab" data-bs-target="#nav-item" type="button" role="tab" aria-controls="nav-item" aria-selected="true">Anúncio</button>
+                          <button class="nav-link" id="nav-auction-tab" data-bs-toggle="tab" data-bs-target="#nav-auction" type="button" role="tab" aria-controls="nav-auction" aria-selected="false">Leilão</button>
+                        </div>
+                      </nav>
+                      <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-item" role="tabpanel" aria-labelledby="nav-item-tab">                    
+                            {% include 'addons/boardgame_section.html' %}
+                        </div>
+                        <div class="tab-pane fade" id="nav-auction" role="tabpanel" aria-labelledby="nav-auction-tab">
+                            {% include 'addons/auction_section.html' %}
+                        </div>
+                      </div>      
+                </div>                
+            </div>
+        </div>
+    </div> 
+    {#  #}
+    {% endif %}
+</div>
+    <div hidden>
+        {{ macros.render_auction_form(_auction_template_form, '_') }}
+    </div>
+    <div hidden>
+        {{ macros.render_boardgame_form(_boardgame_template_form, '_') }}
+    </div>
+{% endblock %}
+

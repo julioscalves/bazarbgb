@@ -1,0 +1,95 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<div class="card px-5 mt-5 mb-5">
+    <div class="row mt-1">
+        <div class="text-center">
+            <a href="/"><img src="{{ url_for('static', filename='bgb-transparent.png') }}" style="border-radius: 50%; width: 30%; height: auto;"class="rounded" alt="Bazar BGB logo"></a>
+        </div>
+        <p class="text-center lead fw-bold">FAQ</p>
+        <ol class="list-group list-group-numbered mb-5 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Como utilizar o gerador de anúncios?</div>
+                Realize o login via Telegram (lembre-se de criar um <a href="https://telegram.org/faq?setln=pt-br#p-o-que-sao-nomes-de-usuario-como-obtenho-um" target="_blank">nome de usuário</a>!), preencha as informações referentes à cidade, ao estado e ao jogo e clique em enviar. A depender do tipo de anúncio, o preço pode ser um campo de preenchimento obrigatório.
+                <br>Os campos de cidade e jogo <mark>devem ser selecionados conforme as sugestões do campo de autocompletar</mark>.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">E se a minha cidade ou o jogo não estiverem entre as sugestões?</div>
+                Verifique se o nome do jogo e/ou da cidade <mark>foram digitados corretamente</mark>. Se estiver tudo certo, envie essa ocorrência para a administração. Em caso de algum jogo, envie o link deste board game conforme listado no <a href="https://boardgamegeek.com/" target="_blank">BGG</a>.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">A tag gerada está errada! O que eu faço?</div>
+                  Ver resposta do item 2.
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">O que você quer dizer com "digitados corretamente"?</div>
+                  <div class="row text-center mx-auto">
+                    <div class="col-6"><strong>Certo</strong></div><div class="col-6"><strong>Errado</strong></div>
+                    <div class="col-6">7 Wonders Duel</div><div class="col-6">7WondersDuel</div>
+                    <div class="col-6">Marco Polo</div><div class="col-6">MarcoPolo</div>
+                    <div class="col-6">7 Wonders</div><div class="col-6">Seven Wonders</div>
+                    <div class="col-6">Um Império em Oito Minutos</div><div class="col-6">Um Império em 8 Minutos</div>
+                    <div class="col-6">Orléans</div><div class="col-6">Orleans</div>
+                  </div>
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Como envio o meu anúncio ao BGB Bazar?</div>
+                O envio é feito <mark>automaticamente</mark> pelo bot através deste site.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">Como faço se eu quiser adicionar imagens?</div>
+                Uma vez que o seu anúncio esteja no BGB Bazar, <mark>você pode colocar um comentário</mark> adicionando as fotos que queira compartilhar.
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Qual a diferença entre a opção leilão na aba Anúncio e a aba Leilão?</div>
+                No aba Anúncio, você publica um <mark>leilão em uma plataforma externa ao BGB</mark>. Já na aba Leilão, você realiza um <mark>leilão dentro do Bazar BGB</mark>, seguindo as nossas regras e o nosso formato.
+                É importante ressaltar que você <mark>não pode enviar o conteúdo das abas Anúncio e Leilão ao mesmo tempo</mark>. Apenas o conteúdo da aba onde você tiver clicado em enviar será considerado.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">Não quero utilizar o gerador! Como faço?</div>
+                  <mark>Não há como</mark> enviar um anúncio ao BGB Bazar sem o uso do gerador. 
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Quais dados são utilizados ao fazer o login pelo Telegram?</div>
+                <mark>Apenas o seu id e seu nome de usuário</mark>. Ressaltamos que não é possível acessar qualquer tipo de informação privada, como conversas ou seu número de telefone. Nenhuma informação do login é armazenada neste site.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Com qual frequência posso enviar anúncios?</div>
+                <mark>Apenas uma vez por semana</mark>, seja anúncio normal ou leilão. Então tenha certeza que o seu anúncio está nos conformes antes de enviá-lo!
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Eu clico em enviar ou confirmar o envio, mas nada acontece!</div>
+                <mark>Certifique-se que digitou corretamente</mark> o nome dos jogos ou escolheu uma das sugestões apresentadas pelo campo de autocompletar <mark>e preencheu todas as informações necessárias</mark> para o seu anúncio. Anúncios de venda, por exemplo, não podem ser enviadas sem preço.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Eu tenho uma sugestão, reclamação ou dúvida não respondida nesta página!</div>
+                <mark>Entre em contato com a administração do BGB</mark>. Sugestões e críticas construtivas são sempre bem-vindas!
+              </div>
+            </li>
+          </ol>
+    </div>
+</div>
+{% endblock %}

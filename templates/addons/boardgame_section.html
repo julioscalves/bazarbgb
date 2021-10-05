@@ -1,0 +1,41 @@
+<div class="form-group mt-3">
+    <form id="boardgame-form" action="" method="POST" role="form">
+        {{ boardgame_form.hidden_tag() }}      
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-8 col-8">
+                <p>
+                    {{ boardgame_form.city.label }}<br>
+                    {{ boardgame_form.city(class_="form-control city", placeholder="Mantenha a acentuação correta", maxlength="30") }}
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 col-4">
+                <p>
+                    {{ boardgame_form.state.label }}<br>
+                    {{ boardgame_form.state(class_="form-select", id="states") }}
+                </p>
+            </div>
+        </div> 
+        <div id="boardgame-subforms-container">
+            {% for subform in boardgame_form.boardgames %}
+                {{ macros.render_boardgame_form(subform, loop.index0) }}
+            {% endfor %}
+        </div>
+         <div class="col-12">
+            <p>
+                {{ boardgame_form.general_details.label }}
+                    <small class="text-muted"><span id="general_details_chars" style="float:right;"></span></small>       
+                {{ boardgame_form.general_details(class_="form-control", id="general_details", maxlength="600", placeholder="(Opcional) Aceito Shopee, MercadoLivre e retirada em mãos.") }}
+            </p>
+        </div>
+        <div class="d-grid gap-2 mb-5 mt-5">
+            <button id="add_boardgame" class="btn btn-secondary btn-lg" type="button"><i class="fas fa-plus-circle"></i> Adicionar mais um item</button>
+            <button id="form-submit" type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#boardgameConfirm">
+                <i class="far fa-paper-plane"></i> Enviar Anúncio
+            </button>
+        </div> 
+        {% include 'addons/boardgame_confirmation.html' %}      
+    </form>  
+    {% if boardgame_form.errors %}
+        {{ boardgame_form.errors }}
+    {% endif %}
+    </div>  

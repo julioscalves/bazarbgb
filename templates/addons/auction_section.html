@@ -1,0 +1,69 @@
+<div class="form-group mt-3">
+    <div class="fade show mt-1 mx-auto">
+        <div class="alert alert-warning fade in alert-dismissible show">
+            <button class="close" type="button" data-bs-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                ×
+              </span>
+            </button>
+            <strong>
+                Atenção!
+            </strong>
+            Esta opção enviará somente o leilão para o BGB Bazar! O conteúdo da aba Anúncio será perdido!
+        </div>
+    </div>
+    <form id="auction-form" action="" method="POST" role="form">
+        {{ auction_form.hidden_tag() }}      
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-8 col-8">
+                <p>
+                    {{ auction_form.city.label }}<br>
+                    {{ auction_form.city(class_="form-control city", placeholder="Mantenha a acentuação correta", maxlength="30") }}
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 col-4">
+                <p>
+                    {{ auction_form.state.label }}<br>
+                    {{ auction_form.state(class_="form-select", id="states") }}
+                </p>
+            </div>
+        </div> 
+        <div class="row">
+            <span class="text-center">Encerramento</span>
+            <div class="col-6">
+                <p>
+                    {{ auction_form.ending_date.label }}
+                    {{ auction_form.ending_date(type="date", class_="form-control", placeholder="(Obrigatório) Data de fechamento do leilão, MercadoLivre e retirada em mãos.") }}
+                </p>
+            </div>
+            <div class="col-6">
+                <p>
+                    {{ auction_form.ending_hour.label }}
+                    {{ auction_form.ending_hour(type="time", class_="form-control", placeholder="(Obrigatório) Data de fechamento do leilão, MercadoLivre e retirada em mãos.") }}
+                </p>
+            </div>
+        </div>
+        <div id="auction-subforms-container">
+            {% for subform in auction_form.boardgames %}
+                {{ macros.render_auction_form(subform, loop.index0) }}
+            {% endfor %}
+        </div>
+        <div class="col-12">
+            <p>
+                {{ auction_form.general_details.label }}
+                    <small class="text-muted"><span id="general_details_chars" style="float:right;"></span></small>       
+                {{ auction_form.general_details(class_="form-control", id="general_details", maxlength="600", placeholder="(Opcional) Aceito Shopee, MercadoLivre e retirada em mãos.") }}
+            </p>
+        </div>
+        <div class="d-grid gap-2 mb-5 mt-5">
+            <button id="add_auction" class="btn btn-secondary btn-lg" type="button"><i class="fas fa-plus-circle"></i> Adicionar mais um item</button>
+            <button id="form-submit" type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#auctionConfirm">
+                <i class="far fa-paper-plane"></i> Enviar Leilão
+            </button>
+        </div> 
+        {% include 'addons/auction_confirmation.html' %}
+    </form>  
+    {% if auction_form.errors %}
+        {{ auction_form.errors }}
+    {% endif %}
+</div>   

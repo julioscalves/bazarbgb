@@ -1,0 +1,117 @@
+body {
+  background: rgb(113, 178, 128);
+  background: linear-gradient(180deg, #71b280 0%, #134e5e 100%);
+  min-height: 100vh;
+  color: black;
+}
+
+#city {
+  text-transform: capitalize;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #149131;
+}
+
+.form-control:focus {
+  border-color: #71b280 !important;
+  box-shadow: inset 0 1px 1px #0b7a3b, 0 0 8px #149131 !important;
+}
+
+.form-select:focus {
+  border-color: #71b280 !important;
+  box-shadow: inset 0 1px 1px #0b7a3b, 0 0 8px #149131 !important;
+}
+
+.alert > a {
+  color: white;
+  text-decoration: underline;
+}
+
+.nav-link.active {
+  background-color: #30b643 !important;
+  color: white !important;
+  font-weight: bold;
+  box-shadow: inset 0 1px 1px #0b7a3b, 0 0 8px #149131;
+} 
+
+.nav-link {
+  color: black;
+}
+
+.form-control::placeholder {
+  color: #959595;
+  text-transform: none !important;
+}
+
+.callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 2px solid #eee;
+  border-left-width: 8px;
+  border-radius: 5px;
+}
+.callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.callout p:last-child {
+  margin-bottom: 0;
+}
+.callout code {
+  border-radius: 3px;
+}
+.callout + .bs-callout {
+  margin-top: -5px;
+}
+
+.callout-default {
+  border-left-color: #777;
+}
+.callout-default h4 {
+  color: #777;
+}
+
+.callout-primary {
+  border-left-color: #428bca;
+}
+.callout-primary h4 {
+  color: #428bca;
+}
+
+.callout-success {
+  border-left-color: #5cb85c;
+}
+.callout-success h4 {
+  color: #5cb85c;
+}
+
+.callout-danger {
+  border-left-color: #d9534f;
+}
+.callout-danger h4 {
+  color: #d9534f;
+}
+
+.callout-warning {
+  border-left-color: #f0ad4e;
+}
+.callout-warning h4 {
+  color: #f0ad4e;
+}
+
+.callout-info {
+  border-left-color: #5bc0de;
+}
+.callout-info h4 {
+  color: #5bc0de;
+}
+
+.callout-bdc {
+  border-left-color: #29527a;
+}
+.callout-bdc h4 {
+  color: #29527a;
+}
