@@ -239,17 +239,6 @@ def remove_roman_hashtags(string):
     return string
 
 
-def replace_hashtags(string):
-    replacements = {
-        "#Ca$hnGun$": "#CashNGuns",
-    }
-
-    if string in replacements.keys():
-        string = replacements[string]
-
-    return string
-
-
 def generate_tag(game):
     tag = remove_special_chars(game)
     tag = replace_numbers(tag)
@@ -263,7 +252,6 @@ def generate_tag(game):
     tag = fix_editions(tag)
     tag = remove_roman_hashtags(tag)
     tag = remove_single_hashtag(tag)
-    #tag = replace_hashtags(tag)
     tag = tag.strip()
 
     return tag
