@@ -25,10 +25,11 @@ env_path = os.path.join(os.getcwd(), '.env')
 
 if os.path.exists(env_path):
     load_dotenv(env_path)
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-    TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-    USERS_DB_NAME = os.getenv('USERS_DB_NAME')
-    BGB_BAZAR_CHANNEL_ID = os.getenv('BGB_BAZAR_CHANNEL_ID')
+
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+USERS_DB_NAME = os.getenv('USERS_DB_NAME')
+BGB_BAZAR_CHANNEL_ID = os.getenv('BGB_BAZAR_CHANNEL_ID')
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///names.db'
