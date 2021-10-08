@@ -495,7 +495,7 @@ def bgsearch():
     """
     name = request.args.get('bgquery')
 
-    dbquery = Names.query.filter(Names.name.like(f'%{name}%')).all()
+    dbquery = Names.query.filter(Names.name.ilike(f'%{name}%')).all()
     results = [result.name for result in dbquery][:20]
 
     if len(results) < 5:
@@ -503,6 +503,7 @@ def bgsearch():
         results = list(set([*results, *bgg]))
 
     results = results[:20]
+    results.sort()
 
     return jsonify(bglist=results)
 
