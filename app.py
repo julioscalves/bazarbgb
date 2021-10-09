@@ -21,10 +21,9 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 cors = CORS(app)
 
-env_path = os.path.join(os.getcwd(), 'env')
+env_path = os.path.join(os.getcwd(), '.env')
 
 if os.path.exists(env_path):
-    print(env_path)
     load_dotenv(env_path)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
