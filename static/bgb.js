@@ -181,7 +181,7 @@ function addBoardGameForm() {
   $newForm.addClass("boardgame_subform");
   $newForm.removeClass("is-hidden");
 
-  $newForm.find(".remove").click(removeForm);
+  $newForm.find(".remove-bg").click(removeBoardGameForm);
 }
 
 function addAuctionForm() {
@@ -232,7 +232,7 @@ function addAuctionForm() {
   $newForm.addClass("auction_subform");
   $newForm.removeClass("is-hidden");
 
-  $newForm.find(".remove").click(removeForm);
+  $newForm.find(".remove-ac").click(removeAuctionForm);
 }
 
 function toTitleCase(string) {
