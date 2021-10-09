@@ -140,7 +140,7 @@ def manage_series(string):
         'X-Wing',               'Y-Wing',               'A Máscara',            'Harry Potter',
         'Dwar7s',               'Marco Polo',           'Glen More',            'War',
         'Banco Imobiliário',    'Hanabi',               'Código Secreto',       'Codenames',
-        'Pixel Tactics',                
+        'Pixel Tactics',        'Adventure Time'        
     }
 
     for serie in series:
@@ -239,6 +239,17 @@ def remove_roman_hashtags(string):
     return string
 
 
+def manage_exceptions(string):
+    exceptions = {
+        '#ManoplaDoInfinito #UmJogoLoveLetter': '#ManoplaDoInfinito Um Jogo #LoveLetter'
+    }
+
+    if string in exceptions.keys():
+        string = exceptions[string]
+
+    return string
+
+
 def generate_tag(game):
     tag = remove_special_chars(game)
     tag = replace_numbers(tag)
@@ -252,6 +263,7 @@ def generate_tag(game):
     tag = fix_editions(tag)
     tag = remove_roman_hashtags(tag)
     tag = remove_single_hashtag(tag)
+    tag = manage_exceptions(tag)
     tag = tag.strip()
 
     return tag
