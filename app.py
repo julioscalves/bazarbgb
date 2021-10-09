@@ -21,9 +21,10 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 cors = CORS(app)
 
-env_path = os.path.join(os.getcwd(), '.env')
+env_path = os.path.join(os.getcwd(), 'env')
 
 if os.path.exists(env_path):
+    print(env_path)
     load_dotenv(env_path)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
@@ -378,7 +379,8 @@ def authenticate(telegram_data):
     data_check_string = []
 
     for key in auth_data_keys:
-        data_check_string.append(key + '=' + auth_data[key])
+        if auth_data[key] != None:
+            data_check_string.append(key + '=' + auth_data[key])
 
     data_check_string = '\n'.join(data_check_string)
 
