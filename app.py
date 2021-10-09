@@ -503,7 +503,7 @@ def bgsearch():
         bgg = search_bgg(name)
         results = list(set([*results, *bgg]))
 
-    results.sort()
+    results.sort(key=lambda x: len(x))
     results = results[:20]    
 
     return jsonify(bglist=results)
