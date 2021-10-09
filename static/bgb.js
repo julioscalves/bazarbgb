@@ -16,8 +16,8 @@ function replaceTemplateIndex(value, index) {
 /**
  * Adjust the indices of form fields when removing items.
  */
-function adjustIndices(removedIndex) {
-  var $forms = $(".subform");
+function adjustBoardGameIndices(removedIndex) {
+  var $forms = $(".boardgame_subform");
 
   $forms.each(function (i) {
     var $form = $(this);
@@ -57,22 +57,78 @@ function adjustIndices(removedIndex) {
   });
 }
 
+function adjustAuctionIndices(removedIndex) {
+    var $forms = $(".boardgame_subform");
+  
+    $forms.each(function (i) {
+      var $form = $(this);
+      var index = parseInt($form.data("index"));
+      var newIndex = index - 1;
+  
+      if (index < removedIndex) {
+        // Skip
+        return true;
+      }
+  
+      // This will replace the original index with the new one
+      // only if it is found in the format -num-, preventing
+      // accidental replacing of fields that may have numbers
+      // intheir names.
+      var regex = new RegExp("(-)" + index + "(-)");
+      var repVal = "$1" + newIndex + "$2";
+  
+      // Change ID in form itself
+      $form.attr("id", $form.attr("id").replace(index, newIndex));
+      $form.data("index", newIndex);
+  
+      // Change IDs in form fields
+      $form.find("label, input, select, textarea").each(function (j) {
+        var $item = $(this);
+  
+        if ($item.is("label")) {
+          // Update labels
+          $item.attr("for", $item.attr("for").replace(regex, repVal));
+          return;
+        }
+  
+        // Update other fields
+        $item.attr("id", $item.attr("id").replace(regex, repVal));
+        $item.attr("name", $item.attr("name").replace(regex, repVal));
+      });
+    });
+  }
+
+
 /**
  * Remove a form.
  */
-function removeForm() {
+function removeBoardGameForm() {
   var confirmation = confirm("Quer remover este item?");
 
   if (confirmation == true) {
-    var $removedForm = $(this).closest(".subform");
+    var $removedForm = $(this).closest(".boardgame_subform");
     var removedIndex = parseInt($removedForm.data("index"));
 
     $removedForm.remove();
 
     // Update indices
-    adjustIndices(removedIndex);
+    adjustBoardGameIndices(removedIndex);
   }
 }
+
+function removeAuctionForm() {
+    var confirmation = confirm("Quer remover este item?");
+  
+    if (confirmation == true) {
+      var $removedForm = $(this).closest(".auction_subform");
+      var removedIndex = parseInt($removedForm.data("index"));
+  
+      $removedForm.remove();
+  
+      // Update indices
+      adjustAuctionIndices(removedIndex);
+    }
+  }
 
 /**
  * Add a new form.
@@ -206,7 +262,8 @@ function validate_boardgame(
 $(document).ready(function () {
   $("#add_boardgame").click(addBoardGameForm);
   $("#add_auction").click(addAuctionForm);
-  $(".remove").click(removeForm);
+  $(".remove-bg").click(removeBoardGameForm);
+  $(".remove-ac").click(removeAuctionForm);
   $("body").css("display", "none");
   $("body").fadeIn(400);
 
