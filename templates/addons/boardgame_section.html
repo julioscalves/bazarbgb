@@ -23,13 +23,13 @@
          <div class="col-12">
             <p>
                 {{ boardgame_form.general_details.label }}
-                    <small class="text-muted"><span id="general_details_chars" style="float:right;"></span></small>       
-                {{ boardgame_form.general_details(class_="form-control", id="general_details", maxlength="600", placeholder="(Opcional) Aceito Shopee, MercadoLivre e retirada em mãos.") }}
+                    <small class="text-light"><span id="boardgame_general_details_chars" style="float:right;"></span></small>       
+                {{ boardgame_form.general_details(class_="form-control general_details", id="boardgame_general_details", maxlength="600", placeholder="(Opcional) Aceito Shopee, MercadoLivre e retirada em mãos.") }}
             </p>
         </div>
         <div class="d-grid gap-2 mb-5 mt-5">
             <button id="add_boardgame" class="btn btn-secondary btn-lg" type="button"><i class="fas fa-plus-circle"></i> Adicionar mais um item</button>
-            <button id="form-submit" type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#boardgameConfirm">
+            <button id="boardgame-form-submit" type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#boardgameConfirm" disabled>
                 <i class="far fa-paper-plane"></i> Enviar Anúncio
             </button>
         </div> 

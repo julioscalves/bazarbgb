@@ -51,13 +51,13 @@
         <div class="col-12">
             <p>
                 {{ auction_form.general_details.label }}
-                    <small class="text-muted"><span id="general_details_chars" style="float:right;"></span></small>       
-                {{ auction_form.general_details(class_="form-control", id="general_details", maxlength="600", placeholder="(Opcional) Aceito Shopee, MercadoLivre e retirada em mãos.") }}
+                    <small class="text-light"><span id="auction_general_details_chars" style="float:right;"></span></small>       
+                {{ auction_form.general_details(class_="form-control general_details", id="auction_general_details", maxlength="600", placeholder="(Opcional) Aceito Shopee, MercadoLivre e retirada em mãos.") }}
             </p>
         </div>
         <div class="d-grid gap-2 mb-5 mt-5">
             <button id="add_auction" class="btn btn-secondary btn-lg" type="button"><i class="fas fa-plus-circle"></i> Adicionar mais um item</button>
-            <button id="form-submit" type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#auctionConfirm">
+            <button id="auction-form-submit" type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#auctionConfirm" disabled>
                 <i class="far fa-paper-plane"></i> Enviar Leilão
             </button>
         </div> 
