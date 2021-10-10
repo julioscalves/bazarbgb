@@ -17,14 +17,21 @@ from flask.globals import request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 
+env_path = os.path.join(os.getcwd(), '.env')
+
+if os.path.exists(env_path):
+    
+    from dotenv import load_dotenv
+
+    env_path = os.path.join(os.getcwd(), '.env')
+
+    if os.path.exists(env_path):
+        load_dotenv(env_path)
 
 app = Flask(__name__)
 cors = CORS(app)
 
 env_path = os.path.join(os.getcwd(), '.env')
-
-if os.path.exists(env_path):
-    load_dotenv(env_path)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
@@ -275,6 +282,15 @@ def check_user(telegram_data):
         return db_user
 
 
+def validate_boardgames(name):
+    dbquery = Names.query.filter_by(name=name).all()
+    
+    if len(dbquery) == 0:
+        return False
+
+    return True
+
+
 def unpack_data(form_data, telegram_data, data_source):
     """
     Unpacks the form data into a dictionary
@@ -294,23 +310,6 @@ def unpack_data(form_data, telegram_data, data_source):
     db_user = check_user(telegram_data)
 
     future_date = datetime.now() + timedelta(hours=168) - timedelta(hours=3)
-
-    if db_user is False:
-        cur.execute('INSERT INTO users VALUES (:id, :username, :is_banned, :block_until)', {
-                        'id'            : telegram_data['id'],
-                        'username'      : telegram_data['username'],
-                        'is_banned'     : 0,
-                        'block_until'   : future_date,
-                    })
-
-    else:
-        cur.execute('UPDATE users SET block_until = :block_until WHERE id = :id', {
-                        'block_until'   : future_date,
-                        'id'            : telegram_data['id'],
-                    })
-
-    con.commit()
-    con.close()
 
     data = {}
 
@@ -349,9 +348,29 @@ def unpack_data(form_data, telegram_data, data_source):
                 'details'   : games['details'],
             }
 
+        if not validate_boardgames(games['boardgame']):
+            return games['boardgame'], False
+
         index += 1
 
     int_keys = list(filter(lambda i: type(i) == int, data.keys()))
+
+    if db_user is False:
+        cur.execute('INSERT INTO users VALUES (:id, :username, :is_banned, :block_until)', {
+                        'id'            : telegram_data['id'],
+                        'username'      : telegram_data['username'],
+                        'is_banned'     : 0,
+                        'block_until'   : future_date,
+                    })
+
+    else:
+        cur.execute('UPDATE users SET block_until = :block_until WHERE id = :id', {
+                        'block_until'   : future_date,
+                        'id'            : telegram_data['id'],
+                    })
+
+    con.commit()
+    con.close()
 
     return data, int_keys
 
@@ -582,19 +601,31 @@ def home():
         if auction_form.validate() and is_auction_submitted:
             ads, int_keys = unpack_data(
                 auction_form, telegram_data, data_source='auction')
-            handle_data(ads, int_keys)
 
-            return redirect(url_for('home', success='true'))
+            if int_keys == False:
+                flash(f'O jogo {ads} não está em nosso banco de dados e, por isso, o envio do anúncio foi cancelado. \
+                        Siga as instruções no nosso FAQ.')
+
+            else:            
+                handle_data(ads, int_keys)
+                
+                return redirect(url_for('home', success='true'))
 
         elif boardgame_form.validate() and is_boardgame_submitted:
             ads, int_keys = unpack_data(
                 boardgame_form, telegram_data, data_source='boardgame')
-            handle_data(ads, int_keys)
 
-            return redirect(url_for('home', success='true'))
+            if int_keys == False:
+                flash(f'O jogo {ads} não está em nosso banco de dados e, por isso, o envio do anúncio foi cancelado. \
+                        Siga as instruções no nosso FAQ. O envio de jogos não listados no campo de autocompletar não é permitido.')
+
+            else:                   
+                handle_data(ads, int_keys)
+
+                return redirect(url_for('home', success='true'))
 
     return render_template('home.html', telegram_auth=telegram_auth, boardgame_form=boardgame_form, auction_form=auction_form, _boardgame_template_form=boardgame_template_form, _auction_template_form=auction_template_form)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

@@ -180,11 +180,7 @@ function addBoardGameForm() {
 	$newForm.addClass("boardgame_subform");
 	$newForm.removeClass("is-hidden");
 
-<<<<<<< HEAD
 	$newForm.find(".remove-bg").click(removeBoardGameForm);
-=======
-  $newForm.find(".remove-bg").click(removeBoardGameForm);
->>>>>>> fa61c92501a3ba3934e6a7400414fd7ff93a158f
 }
 
 function addAuctionForm() {
@@ -235,11 +231,7 @@ function addAuctionForm() {
 	$newForm.addClass("auction_subform");
 	$newForm.removeClass("is-hidden");
 
-<<<<<<< HEAD
-	$newForm.find(".remove-ac").click(removeAuctionForm);
-=======
-  $newForm.find(".remove-ac").click(removeAuctionForm);
->>>>>>> fa61c92501a3ba3934e6a7400414fd7ff93a158f
+    $newForm.find(".remove-ac").click(removeAuctionForm);
 }
 
 function toTitleCase(string) {
