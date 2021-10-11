@@ -17,21 +17,13 @@ from flask.globals import request
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 
-env_path = os.path.join(os.getcwd(), '.env')
-
-if os.path.exists(env_path):
-    
-    from dotenv import load_dotenv
-
-    env_path = os.path.join(os.getcwd(), '.env')
-
-    if os.path.exists(env_path):
-        load_dotenv(env_path)
-
 app = Flask(__name__)
 cors = CORS(app)
 
 env_path = os.path.join(os.getcwd(), '.env')
+
+if os.path.exists(env_path):
+    load_dotenv(env_path)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')

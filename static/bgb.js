@@ -244,8 +244,8 @@ function toTitleCase(string) {
 	return titleCase.join(" ");
 }
 
-var boardgameLock = true
-var auctionLock = true
+var boardgameLock = false
+var auctionLock = false
 var generalDetailsLock = false
 var itemDetailsLock = false
 
@@ -303,7 +303,7 @@ $(document).ready(function() {
                 &&  generalDetailsLock === false
                 &&  itemDetailsLock === false
         ) {
-            $("#boardgame-form-submit").removeAttr("disabled");
+            $("#boardgame-form-submit").attr("disabled", false);
         } else {
             $("#boardgame-form-submit").attr("disabled", true);
         }
@@ -313,7 +313,7 @@ $(document).ready(function() {
                 &&  generalDetailsLock === false
                 &&  itemDetailsLock === false
         ) {
-            $("#auction-form-submit").removeAttr("disabled");
+            $("#auction-form-submit").attr("disabled", false);
         } else {
             $("#auction-form-submit").attr("disabled", true);
         }

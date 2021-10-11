@@ -19,7 +19,7 @@ OFFER = [
 
 class BoardGameItemForm(FlaskForm):
     offer       = SelectField('Tipo', choices=OFFER)
-    boardgame   = StringField('Nome', validators=[InputRequired()])
+    boardgame   = StringField('Jogo', validators=[InputRequired()])
     details     = StringField('Detalhes sobre o item', validators=[Length(max=80)])
     price       = StringField('Preço', validators=[Length(max=8)])
 
@@ -35,7 +35,7 @@ class BoardGameForm(FlaskForm):
 
 
 class AuctionItemForm(FlaskForm):
-    boardgame       = StringField('Nome', validators=[InputRequired()])
+    boardgame       = StringField('Jogo', validators=[InputRequired()])
     details         = StringField('Detalhes sobre o item', validators=[Length(max=80)])
     starting_price  = StringField('Lance inicial', validators=[Length(max=8), InputRequired()])
     increment       = StringField('Incremento', validators=[Length(max=6), InputRequired()])
