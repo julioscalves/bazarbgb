@@ -29,6 +29,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 USERS_DB_NAME = os.getenv('USERS_DB_NAME')
 BGB_BAZAR_CHANNEL_ID = os.getenv('BGB_BAZAR_CHANNEL_ID')
+BGB_TESTES_CHANNEL_ID = os.getenv('BGB_TESTES_CHANNEL_ID')
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///names.db'
@@ -508,11 +509,18 @@ def bgsearch():
     name = request.args.get('bgquery')
 
     dbquery = Names.query.filter(Names.name.ilike(f'%{name}%')).all()
-    results = [result.name for result in dbquery][:20]
+    results = [result.name for result in dbquery]
 
     if len(results) < 5:
         bgg = search_bgg(name)
-        results = list(set([*results, *bgg]))
+
+        if len(bgg) > 0:
+            for name in bgg:
+                new_game = Names(name=name)
+                db.session.add(new_game)
+                db.session.commit()
+
+        results = list(set([*results, *bgg]))   
 
     results.sort(key=lambda x: len(x))
     results = results[:20]    
