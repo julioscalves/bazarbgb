@@ -527,6 +527,26 @@ def bgsearch():
 
     return jsonify(bglist=results)
 
+@app.route('/reset')
+def reset():
+    username = request.args.get('username')
+
+    con = sqlite3.connect(USERS_DB_NAME)
+    cur = con.cursor()
+
+    db_user = cur.execute(f'SELECT * FROM users WHERE username="{username}"').fetchone()
+
+    if db_user:
+        cur.execute('UPDATE users SET block_until = :block_until WHERE username = :username', {
+                        'block_until' : 0,
+                        'username'    : username,
+                    })
+
+    con.commit()
+    con.close()
+
+    return redirect('/')
+
 
 @app.route('/faq')
 def faq():
