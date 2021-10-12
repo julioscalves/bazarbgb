@@ -241,7 +241,8 @@ def remove_roman_hashtags(string):
 
 def manage_exceptions(string):
     exceptions = {
-        '#ManoplaDoInfinito #UmJogoLoveLetter': '#ManoplaDoInfinito Um Jogo #LoveLetter'
+        '#ManoplaDoInfinito #UmJogoLoveLetter': '#ManoplaDoInfinito Um Jogo #LoveLetter',
+        '#Mission #RedPlanet': '#MissionRedPlanet'
     }
 
     if string in exceptions.keys():

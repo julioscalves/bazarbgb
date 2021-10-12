@@ -248,6 +248,7 @@ var boardgameLock = false
 var auctionLock = false
 var generalDetailsLock = false
 var itemDetailsLock = false
+var cityLock = true
 
 function validate_boardgame(
 	autocomplete_list,
@@ -302,6 +303,7 @@ $(document).ready(function() {
             boardgameLock === false
                 &&  generalDetailsLock === false
                 &&  itemDetailsLock === false
+                &&  cityLock === false
         ) {
             $("#boardgame-form-submit").attr("disabled", false);
         } else {
@@ -312,6 +314,7 @@ $(document).ready(function() {
             auctionLock === false
                 &&  generalDetailsLock === false
                 &&  itemDetailsLock === false
+                &&  cityLock === false
         ) {
             $("#auction-form-submit").attr("disabled", false);
         } else {
@@ -377,11 +380,13 @@ $(document).ready(function() {
         console.log(description)
 
         if (description.toLowerCase().search(whatsappRegEx) > -1) {
+            $("#auction_general_details").addClass("border border-danger");
             $("#auction_general_details_chars").text(
                 "Menções ao Whatsapp não são permitidas!"
             );
             generalDetailsLock = true
         } else {
+            $("#auction_general_details").removeClass("border border-danger");
             $("#auction_general_details_chars").text(
                 DESCRIPTION_MAX - $(this).val().length + " caracteres restantes."
             );
@@ -451,7 +456,7 @@ $(document).ready(function() {
 					boardgame_input_element,
 				);
 			},
-			minLength: 2,
+			minLength: 1,
 		});
 	});
 
@@ -473,14 +478,23 @@ $(document).ready(function() {
 
 	$(document).on("keypress change focus", ".city", function() {
 		var city = $(this).val()
+        
+        if (cities.includes(city)) {
+            cityLock = false
+            $("#city").removeClass("border border-danger");
+        } else {
+            cityLock = true
+            $("#city").addClass("border border-danger");
+        }
+
 		$(".city").autocomplete({
-			delay: 300,
+			delay: 50,
 			source: function(request, response) {
 				typing = toTitleCase(city);
 				let results = cities.filter((word) => word.startsWith(typing));
 				response(results.slice(0, 10));
 			},
-			minLength: 2,
+			minLength: 1,
 		});
 	});
 });
