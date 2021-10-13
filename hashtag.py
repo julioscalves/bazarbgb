@@ -138,7 +138,7 @@ def manage_series(string):
         'Munchkin',             'The Witcher',          'Viticulture: Tuscany', 'The Witcher: Old World',
         'Star Wars: Destiny',	'Anachrony',      		'Patchwork',            'BANG',
         'X-Wing',               'Y-Wing',               'A Máscara',            'Harry Potter',
-        'Dwar7s',               'Marco Polo',           'Glen More',            
+        'Dwar7s',               'Marco Polo',           'Glen More',            'Disney',
         'Banco Imobiliário',    'Hanabi',               'Código Secreto',       'Codenames',
         'Pixel Tactics',        'Adventure Time'        
     }
