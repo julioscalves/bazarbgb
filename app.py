@@ -534,11 +534,13 @@ def reset():
     con = sqlite3.connect(USERS_DB_NAME)
     cur = con.cursor()
 
+    unlock_date = datetime.now() - timedelta(days=1)
+
     db_user = cur.execute(f'SELECT * FROM users WHERE username="{username}"').fetchone()
 
     if db_user:
         cur.execute('UPDATE users SET block_until = :block_until WHERE username = :username', {
-                        'block_until' : 0,
+                        'block_until' : unlock_date,
                         'username'    : username,
                     })
 
