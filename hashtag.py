@@ -51,7 +51,6 @@ def remove_special_chars(string):
         'The Miniatures Game',
         'Tabletop Miniatures Game',
         'Miniatures Game',
-        'The Card Game',
     ]
 
     for char in special_chars:
@@ -140,7 +139,8 @@ def manage_series(string):
         'X-Wing',               'Y-Wing',               'A Máscara',            'Harry Potter',
         'Dwar7s',               'Marco Polo',           'Glen More',            'Disney',
         'Banco Imobiliário',    'Hanabi',               'Código Secreto',       'Codenames',
-        'Pixel Tactics',        'Adventure Time',       'Men of Iron',          'Deckscape'        
+        'Pixel Tactics',        'Adventure Time',       'Men of Iron',          'Deckscape',
+        'Kingdomino',           'Queendomino',          'Starcraft',            'Mass Effect',        
     }
 
     for serie in series:

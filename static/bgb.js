@@ -149,8 +149,8 @@ function addBoardGameForm() {
 		newIndex = parseInt($lastForm.data("index")) + 1;
 	}
 
-	// Maximum of 20 subforms
-	if (newIndex >= 50) {
+	// Maximum of 100 subforms
+	if (newIndex >= 100) {
 		console.log("[WARNING] Reached maximum number of elements");
 		return;
 	}
@@ -200,8 +200,8 @@ function addAuctionForm() {
 		newIndex = parseInt($lastForm.data("index")) + 1;
 	}
 
-	// Maximum of 50 subforms
-	if (newIndex >= 50) {
+	// Maximum of 100 subforms
+	if (newIndex >= 100) {
 		console.log("[WARNING] Reached maximum number of elements");
 		return;
 	}
@@ -269,10 +269,10 @@ function validate_boardgame(
             } else {
                 boardgameLock = false
             }
-		
+
 	} else {
 		boardgame_input_element.addClass("border border-danger");
-        
+
         if (boardgame_input_element
             .parent()
             .parent()
@@ -284,7 +284,7 @@ function validate_boardgame(
             } else {
                 boardgameLock = true
             }
-		
+
 	}
 }
 
@@ -478,7 +478,7 @@ $(document).ready(function() {
 
 	$(document).on("keypress change focus", ".city", function() {
 		var city = $(this).val()
-        
+
         if (cities.includes(city)) {
             cityLock = false
             $("#city").removeClass("border border-danger");
@@ -491,8 +491,10 @@ $(document).ready(function() {
 			delay: 50,
 			source: function(request, response) {
 				typing = toTitleCase(city);
-				let results = cities.filter((word) => word.startsWith(typing));
-				response(results.slice(0, 10));
+				let results = cities.filter((word) => word.startsWith(typing)).sort(function(a, b) {
+					return a.length - b.length
+				});
+				response(results.slice(0, 20));
 			},
 			minLength: 1,
 		});

@@ -1,3 +1,4 @@
+import difflib
 import hashlib
 import hashtag
 import hmac
@@ -508,7 +509,7 @@ def bgsearch():
     """
     name = request.args.get('bgquery')
 
-    dbquery = Names.query.filter(Names.name.ilike(f'%{name}%')).all()
+    dbquery = Names.query.filter(Names.name.like(f'%{name}%')).all()
     results = [result.name for result in dbquery]
 
     if len(results) < 5:
@@ -520,10 +521,10 @@ def bgsearch():
                 db.session.add(new_game)
                 db.session.commit()
 
-        results = list(set([*results, *bgg]))   
+        results = list(set([*results, *bgg])) 
 
-    results.sort(key=lambda x: len(x))
-    results = results[:20]    
+    results.sort(key=lambda x: difflib.SequenceMatcher(None, x, name).ratio(), reverse=True)  
+    results = results[:25]  
 
     return jsonify(bglist=results)
 

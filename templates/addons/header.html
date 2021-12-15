@@ -2,8 +2,8 @@
     <div class="text-center">
         <a href="/"><img src="{{ url_for('static', filename='bgb-transparent.png') }}" style="border-radius: 50%; width: 30%; height: auto;"class="rounded" alt="Bazar BGB logo"></a>
     </div>
-    <p class="text-center lead fw-bold">Gerador de Anúncios do <a href="https://t.me/bazarbgb/" target="_blank">BGB • Bazar</a></p>
-    {% if request.args.get('success') == 'true' %}      
+    <p class="text-center lead fw-bold">Gerador de Anúncios do <a href="https://t.me/bazarbgb2/" target="_blank">BGB • Bazar</a></p>
+    {% if request.args.get('success') == 'true' %}
     <div class="row mt-1 mb-2 col-lg-8 col-md-10 col-sm-10 col-xs-12 col-12 mx-auto">
         <div class="alert alert-success fade in alert-dismissible show">
             <button class="close" type="button" ddata-bs-dismiss="alert" aria-label="Close">
@@ -18,8 +18,8 @@
             <hr>
             Caso necessário, entre em contato com a administração.
           </div>
-    </div> 
-    {% endif %} 
+    </div>
+    {% endif %}
     <div class="fade show mt-1 mx-auto col-lg-8 col-md-10 col-sm-10 col-xs-12 col-12" role="alert">
         <div class="alert alert-secondary fade in alert-dismissible show">
             <button class="close" type="button" data-bs-dismiss="alert" aria-label="Close">
@@ -40,7 +40,7 @@
             {% for message in messages %}
             <div class="alert alert-danger text-center" role="alert">
                 {{ message }}
-            </div>                    
+            </div>
             {% endfor %}
             </ul>
         {% endif %}
@@ -49,7 +49,7 @@
 
 <div class="row">
     <div class="text-center mt-2 {% if not telegram_auth %}mb-5{% endif %}">
-        {% if not telegram_auth %} 
+        {% if not telegram_auth %}
             <p>Primeiro, faça o login pelo Telegram 👇</p>
         {% endif %}
         <script async src="https://telegram.org/js/telegram-widget.js?15" data-telegram-login="bgbbazar_bot" data-size="large" data-auth-url="https://bazarbgb.pythonanywhere.com/"></script>
